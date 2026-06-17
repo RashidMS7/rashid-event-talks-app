@@ -973,3 +973,24 @@ body.light-theme .btn-twitter {
 body.light-theme .btn-twitter:hover {
     background: #1f2937;
 }
+
+/* Result Counter Styling */
+.result-counter {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.result-counter span {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+body.light-theme .result-counter span {
+    color: var(--accent);
+}

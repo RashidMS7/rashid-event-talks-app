@@ -160,6 +160,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return matchesType && matchesSearch;
         });
 
+        // Update result counter
+        const resultCounter = document.getElementById('resultCounter');
+        const filteredCount = document.getElementById('filteredCount');
+        const totalCount = document.getElementById('totalCount');
+        
+        if (resultCounter && filteredCount && totalCount) {
+            if (allReleaseCards.length === 0) {
+                resultCounter.classList.add('hidden');
+            } else {
+                resultCounter.classList.remove('hidden');
+                filteredCount.textContent = filtered.length;
+                totalCount.textContent = allReleaseCards.length;
+            }
+        }
+
         if (filtered.length === 0) {
             emptyState.classList.remove('hidden');
             return;
@@ -261,6 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const tweetBtn = cardDiv.querySelector('.btn-tweet');
         tweetBtn.addEventListener('click', () => openTweetModal(card));
         
+        // Highlight search terms safely
+        if (searchQuery) {
+            highlightText(cardDiv.querySelector('.card-body'), searchQuery);
+        }
+
         return cardDiv;
     }
 
@@ -466,6 +486,54 @@ document.addEventListener('DOMContentLoaded', () => {
             iconThemeLight.classList.add('hidden');
         }
     });
+
+    // Safely highlight query matches inside text nodes
+    function highlightText(element, query) {
+        if (!query) return;
+        
+        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const reg = new RegExp(`(${escapedQuery})`, 'gi');
+        
+        const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        const nodesToReplace = [];
+        
+        while (node = walk.nextNode()) {
+            const parentTag = node.parentElement.tagName;
+            if (parentTag === 'SCRIPT' || parentTag === 'STYLE') {
+                continue;
+            }
+            if (node.nodeValue.toLowerCase().includes(query.toLowerCase())) {
+                nodesToReplace.push(node);
+            }
+        }
+        
+        nodesToReplace.forEach(node => {
+            const parent = node.parentNode;
+            if (!parent) return;
+            
+            const text = node.nodeValue;
+            const parts = text.split(reg);
+            
+            const fragment = document.createDocumentFragment();
+            parts.forEach(part => {
+                if (part.toLowerCase() === query.toLowerCase()) {
+                    const mark = document.createElement('mark');
+                    mark.textContent = part;
+                    mark.style.background = 'rgba(0, 242, 254, 0.25)';
+                    mark.style.color = '#ffffff';
+                    mark.style.borderRadius = '3px';
+                    mark.style.padding = '0 2px';
+                    mark.style.borderBottom = '1px solid rgba(0, 242, 254, 0.5)';
+                    fragment.appendChild(mark);
+                } else {
+                    fragment.appendChild(document.createTextNode(part));
+                }
+            });
+            
+            parent.replaceChild(fragment, node);
+        });
+    }
 
     // Initial Load
     fetchReleases();
