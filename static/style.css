@@ -840,3 +840,136 @@ footer {
     color: var(--color-feature);
     border-color: var(--border-feature);
 }
+
+/* Light Theme Variables & Overrides */
+body.light-theme {
+    --bg-base: #f9fafb;
+    --bg-surface: rgba(255, 255, 255, 0.75);
+    --bg-surface-hover: rgba(255, 255, 255, 0.9);
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-color-hover: rgba(0, 242, 254, 0.5);
+    
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    
+    --shadow-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.03);
+    --shadow-card-glow: 0 10px 25px 0 rgba(0, 242, 254, 0.12);
+}
+
+body.light-theme .bg-glow {
+    opacity: 0.06;
+}
+
+body.light-theme .release-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .controls-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .search-box input {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #111827;
+}
+
+body.light-theme .search-box input:focus {
+    border-color: var(--accent);
+}
+
+body.light-theme .pill {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #4b5563;
+}
+
+body.light-theme .pill:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #111827;
+}
+
+body.light-theme .pill.active {
+    background: var(--primary-gradient);
+    color: #080c14;
+    border-color: transparent;
+}
+
+body.light-theme header h1 {
+    background: linear-gradient(135deg, #111827 30%, #312e81 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-theme .card-date {
+    color: #6b7280;
+}
+
+body.light-theme .btn-copy {
+    background: rgba(0, 0, 0, 0.02);
+    color: #4b5563;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .btn-copy:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #111827;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .btn-copy.copied {
+    background: rgba(16, 185, 129, 0.1);
+    color: #047857;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+body.light-theme .modal-card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #111827;
+}
+
+body.light-theme .modal-close {
+    color: #6b7280;
+}
+
+body.light-theme .modal-close:hover {
+    color: #111827;
+}
+
+body.light-theme .modal-field textarea {
+    background: #f9fafb;
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #111827;
+}
+
+body.light-theme .tweet-preview-bubble {
+    background: #f3f4f6;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .preview-name {
+    color: #111827;
+}
+
+body.light-theme .preview-text {
+    color: #374151;
+}
+
+body.light-theme .preview-avatar {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+body.light-theme .btn-twitter {
+    background: #000000;
+    color: #ffffff;
+}
+
+body.light-theme .btn-twitter:hover {
+    background: #1f2937;
+}

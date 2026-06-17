@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const releasesGrid = document.getElementById('releasesGrid');
     const emptyState = document.getElementById('emptyState');
     const exportCsvBtn = document.getElementById('exportCsvBtn');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
     
     // Tweet Modal Elements
     const tweetModal = document.getElementById('tweetModal');
@@ -438,6 +439,31 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !tweetModal.classList.contains('hidden')) {
             closeTweetModal();
+        }
+    });
+
+    // Theme toggle logic
+    const iconThemeDark = themeToggleBtn.querySelector('.icon-theme-dark');
+    const iconThemeLight = themeToggleBtn.querySelector('.icon-theme-light');
+    
+    // Check local storage for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        iconThemeDark.classList.add('hidden');
+        iconThemeLight.classList.remove('hidden');
+    }
+    
+    themeToggleBtn.addEventListener('click', () => {
+        const isLight = document.body.classList.toggle('light-theme');
+        if (isLight) {
+            localStorage.setItem('theme', 'light');
+            iconThemeDark.classList.add('hidden');
+            iconThemeLight.classList.remove('hidden');
+        } else {
+            localStorage.setItem('theme', 'dark');
+            iconThemeDark.classList.remove('hidden');
+            iconThemeLight.classList.add('hidden');
         }
     });
 
