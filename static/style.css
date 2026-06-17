@@ -811,3 +811,32 @@ footer {
         gap: 0.5rem;
     }
 }
+
+/* Clipboard Copy Button Styling */
+.btn-copy {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-copy:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-copy.copied {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--color-feature);
+    border-color: var(--border-feature);
+}
